@@ -34,7 +34,7 @@ jobs:
           sf org login sfdx-url -f authfile -a devhub
 
       - name: 'Create packages'
-        run: sfp quickbuild -v devhub --branch main --diffcheck --buildnumber ${GITHUB_RUN_ID}-f config/project-scratch-def.json
+        run: sfp quickbuild -v devhub --branch main --diffcheck --buildnumber ${GITHUB_RUN_ID} -f config/project-scratch-def.json
 
       # Publish artifacts
       - uses: actions/upload-artifact@v4
