@@ -25,13 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/flxbl-io/sfp:latest
     timeout-minutes: 720 #Set to Maximum Time out
-
     steps:
 
       - uses: actions/checkout@v2
-        with: 
-         ref: ${{ github.event.inputs.gitRef }}
-         fetch-depth: 0
+        with:
+          ref: ${{ github.event.inputs.gitRef }}
+          fetch-depth: 0
 
       - name: 'Authenticate Dev Hub'
         run: |
@@ -41,7 +40,6 @@ jobs:
       # Authenticate to npm
       - uses: actions/setup-node@v4
         with:
-          cache: npm # fetch cache of packages to install
           registry-url: 'https://npm.pkg.github.com'
 
       - name: 'Prepare a pool of scratch orgs'
