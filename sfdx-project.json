@@ -1,13 +1,20 @@
 {
 	"packageDirectories": [
 		{
-			"path": "force-app",
+			"path": "src-temp",
 			"default": true
 		},
-		{ "path": "unpackaged" }
+		{
+			"path": "src/domain/package",
+			"package": "package",
+			"versionNumber": "0.1.0.NEXT",
+			"scopeProfiles": true
+		}
 	],
 	"namespace": "",
 	"sfdcLoginUrl": "https://login.salesforce.com",
-	"sourceApiVersion": "61.0",
-	"packageAliases": {}
+	"sourceApiVersion": "63.0",
+	"packageAliases": {
+		"package": "0Ho09000000oMGqCAM"
+	}
 }
