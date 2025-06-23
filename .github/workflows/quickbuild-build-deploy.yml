@@ -1,4 +1,4 @@
-name: 'CI Pipeline - Auto Triggered'
+name: 'Build Pipeline - Auto Triggered'
 on:
   push:
     branches:
