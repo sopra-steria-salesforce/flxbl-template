@@ -89,7 +89,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Reduce Text Length
         id: reduce-length
-        uses: johnforeland/truncate-tool@v0.5
+        uses: johnforeland/truncate-tool@v1.1
         with:
           text: ${{ fromJSON(steps.pull-request.outputs.data).body }}
           max_lines: 3
