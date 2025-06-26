@@ -1,0 +1,22 @@
+name: '[MANUAL] Delete a single scratch org'
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'Username of the scratch org'
+        required: true
+
+# Drop only unused scratch orgs in the pool for recycling, else users will lose their existing scratch orgs
+jobs:
+  DeleteScratchOrg:
+    runs-on: ubuntu-latest
+    container: ghcr.io/flxbl-io/sfp:latest
+    steps:
+      - name: 'Authenticate DevHub'
+        run: |
+          echo $(DEVHUB_SFDX_AUTH_URL) > ./authfile
+          sf org login sfdx-url -f authfile -a devhub
+
+      - name: "Delete a used scratch org with username: ${{ github.event.inputs.username }}"
+        run: sfp pool:org:delete -u ${{ github.event.inputs.username }} -v devhub
