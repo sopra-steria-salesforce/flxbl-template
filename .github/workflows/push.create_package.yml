@@ -69,6 +69,10 @@ jobs:
       - name: 'Deploy to SIT'
         run: sfp install -u sit --skipifalreadyinstalled -g "##[group],##[endgroup]" --loglevel trace
 
+      # TODO: Implement subflow to catch & publish deployment errors
+      - name: 'Deploy Env Specific Alias Post to SIT'
+        run: sf project deploy start -o sit -d global/src-env-specific-alias-post/sit -c --async
+
 # TODO: Implement Integration Tests (here or in Validate Pipeline using Kubernetes, etc.)
 
   deploy-to-preprod:
@@ -97,6 +101,10 @@ jobs:
 
       - name: 'Deploy to PREPROD'
         run: sfp install -u preprod --skipifalreadyinstalled -g "##[group],##[endgroup]" --loglevel trace
+
+      - name: 'Deploy Env Specific Alias Post to PREPROD'
+        run: sf project deploy start -o preprod -d global/src-env-specific-alias-post/preprod -c --async
+
 
 
   buildAndPublish:
