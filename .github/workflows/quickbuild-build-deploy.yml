@@ -30,7 +30,7 @@ jobs:
 
       - name: 'Authenticate Dev Hub'
         run: |
-          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
 
       - name: 'Create packages'
@@ -42,15 +42,15 @@ jobs:
           name: quickbuild-artifacts
           path: artifacts
 
-  deploy:
-    name: 'Deploy to STAGING'
+  deploy-to-sit:
+    name: 'Deploy to SIT'
     runs-on: ubuntu-latest
     container: ghcr.io/flxbl-io/sfp:latest
     needs: quickbuild
     if: github.ref == 'refs/heads/main'
     environment:
-      name: STAGING
-    concurrency: staging
+      name: SIT
+    concurrency: sit
     steps:
       - uses: actions/checkout@v4
         with:
@@ -61,19 +61,49 @@ jobs:
              name: quickbuild-artifacts
              path: artifacts
 
-      - name: Authenticate to STAGING sandbox
+      - name: Authenticate to SIT sandbox
         run: |
-          echo "${{ secrets.STAGING_SFDX_AUTH_URL }}" > ./authfile
-          sf org login sfdx-url -f authfile -a staging
+          echo "${{ secrets.SIT_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url -f authfile -a sit
 
-      - name: 'Deploy to STAGING'
-        run: sfp install -u staging --skipifalreadyinstalled -g "##[group],##[endgroup]" --loglevel trace
+      - name: 'Deploy to SIT'
+        run: sfp install -u sit --skipifalreadyinstalled -g "##[group],##[endgroup]" --loglevel trace
+
+# TODO: Implement Integration Tests (here or in Validate Pipeline using Kubernetes, etc.)
+
+  deploy-to-preprod:
+    name: 'Deploy to PREPROD'
+    runs-on: ubuntu-latest
+    container: ghcr.io/flxbl-io/sfp:latest
+    needs: quickbuild
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: PREPROD
+    concurrency: preprod
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: quickbuild-artifacts
+          path: artifacts
+
+      - name: Authenticate to PREPROD sandbox
+        run: |
+          echo "${{ secrets.PREPROD_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url -f authfile -a preprod
+
+      - name: 'Deploy to PREPROD'
+        run: sfp install -u preprod --skipifalreadyinstalled -g "##[group],##[endgroup]" --loglevel trace
+
 
   buildAndPublish:
     name: 'Build and Publish'
     runs-on: ubuntu-latest
     container: ghcr.io/flxbl-io/sfp:latest
-    needs: deploy
+    needs: [deploy-to-sit, deploy-to-preprod]
     concurrency: build 
     if: github.ref == 'refs/heads/main' || 'refs/heads/release/*'
     steps:
@@ -83,12 +113,12 @@ jobs:
 
       - name: 'Authenticate Dev Hub'
         run: |
-          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
-          sf org login sfdx-url -f authfile -a devhub
+          echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
+          sf org login sfdx-url -f authfile -a prod
 
       - name: 'Create packages'
         run: |
-          sfp build -v devhub --branch main --diffcheck --buildnumber ${GITHUB_RUN_ID} -f config/project-scratch-def.json
+          sfp build -v prod --branch main --diffcheck --buildnumber ${GITHUB_RUN_ID} -f config/project-scratch-def.json
 
       # Publish artifacts
       - uses: actions/upload-artifact@v4
