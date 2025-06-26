@@ -38,7 +38,7 @@ jobs:
       - name: 'Authenticate Dev Hub'
         run: |
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
-          sfdx auth:sfdxurl:store -f authfile -a devhub
+          sf org login sfdx-url -f authfile -a devhub
 
       - name: 'Publish metrics'
         run: sfdx sfpowerscripts:pool:metrics:publish -v devhub
