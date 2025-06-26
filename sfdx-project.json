@@ -2,7 +2,15 @@
 	"packageDirectories": [
 		{
 			"path": "src-temp",
-			"default": true
+			"type": "source",
+			"default": true,
+			"ignoreOnStage": [
+				"prepare",
+				"quickbuild",
+				"build",
+				"validate",
+				"deploy"
+			]
 		},
 		{
 			"path": "src/core/platform-base",
