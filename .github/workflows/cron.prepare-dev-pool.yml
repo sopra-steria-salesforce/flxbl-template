@@ -1,4 +1,5 @@
-name: 'Replenish DEV Pools - Auto Triggered'
+# TODO: Implement Snapshot pool
+name: '[CRON] Replenish DEV Pool'
 
 on:
   workflow_dispatch:

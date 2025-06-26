@@ -10,7 +10,7 @@
 
 # This pipeline publishes metrics about scratch orgs to Monitoring tool every 30 minutes
 
-name: 'Publish Metrics for Scratch Org Pools'
+name: '[CRON] Publish Metrics for Scratch Org Pools'
 
 on:
   workflow_dispatch:
