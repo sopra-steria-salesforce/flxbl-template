@@ -13,6 +13,12 @@
 			]
 		},
 		{
+			"path": "src/frameworks/feature-flag",
+			"package": "feature-flag",
+			"versionNumber": "0.1.0.NEXT",
+			"scopeProfiles": true
+		},
+		{
 			"path": "src/core/platform-base",
 			"package": "platform-base",
 			"versionNumber": "0.1.0.NEXT",
@@ -26,6 +32,89 @@
 			"dependencies": [
 				{
 					"package": "platform-base",
+					"versionNumber": "0.1.0.NEXT"
+				}
+			]
+		},
+		{
+			"path": "global/platform-ui",
+			"package": "platform-ui",
+			"versionNumber": "0.1.0.0",
+			"type": "source",
+			"dependencies": [
+				{
+					"package": "feature-flag",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "platform-base",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "package",
+					"versionNumber": "0.1.0.NEXT"
+				}
+			]
+		},
+		{
+			"path": "global/src-env-specific",
+			"package": "platform-ui",
+			"versionNumber": "0.1.0.0",
+			"aliasfy": true,
+			"type": "source",
+			"dependencies": [
+				{
+					"package": "feature-flag",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "platform-base",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "package",
+					"versionNumber": "0.1.0.NEXT"
+				}
+			]
+		},
+		{
+			"path": "global/platform-access",
+			"package": "platform-access",
+			"versionNumber": "0.1.0.0",
+			"type": "source",
+			"reconcileProfiles": false,
+			"dependencies": [
+				{
+					"package": "feature-flag",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "platform-base",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "package",
+					"versionNumber": "0.1.0.NEXT"
+				}
+			]
+		},
+		{
+			"path": "global/src-env-specific-alias-post",
+			"package": "platform-ui",
+			"versionNumber": "0.1.0.0",
+			"aliasfy": true,
+			"type": "source",
+			"dependencies": [
+				{
+					"package": "feature-flag",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "platform-base",
+					"versionNumber": "0.1.0.NEXT"
+				},
+				{
+					"package": "package",
 					"versionNumber": "0.1.0.NEXT"
 				}
 			]
