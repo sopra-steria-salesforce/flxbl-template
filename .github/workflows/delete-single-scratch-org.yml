@@ -9,7 +9,7 @@ on:
 
 # Drop only unused scratch orgs in the pool for recycling, else users will lose their existing scratch orgs
 jobs:
-  DeleteScratchOrg:
+  delete-single-scratch-org:
     runs-on: ubuntu-latest
     container: ghcr.io/flxbl-io/sfp:latest
     steps:
