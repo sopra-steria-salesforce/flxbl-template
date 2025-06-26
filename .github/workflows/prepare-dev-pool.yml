@@ -34,7 +34,7 @@ jobs:
 
       - name: 'Authenticate Dev Hub'
         run: |
-          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
 
       # Authenticate to npm

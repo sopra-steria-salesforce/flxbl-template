@@ -43,7 +43,7 @@ jobs:
 
       - name: 'Authenticate Dev Hub'
         run: |
-          echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
+          echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sfdx auth:sfdxurl:store -f authfile -a devhub
 
       - name: 'Delete scratch org ${{ github.event.inputs.username }}'
