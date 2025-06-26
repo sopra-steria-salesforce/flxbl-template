@@ -1,27 +1,13 @@
-# DX@Scale CI/CD Template for GitHub
-#----------------------------------------------------------------------------------------------------
-# Maintained by @aly76 for DX@Scale
-# Follows reference pipeline available at docs.dxatscale.io
-# 
-#-----------------------------------------------------------------------------------------------------
-# To know more about dxatscale, visit https://docs.dxatscale.io
-# To know more on sfpowerscripts, visit- https://sfpowerscripts.dxatscale.io/
-# To know more on sfpowerkit, visit- https://github.com/Accenture/sfpowerkit
-
-
-# This pipeline is used to validate an incoming change using a dev environment fetched from the CI pool
-
 name: 'PR Validation - Auto Triggered'
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - main
-      - release/**
-
-
-  workflow_dispatch:
+    types:
+      - opened
+      - synchronize
+    paths-ignore:
+      - 'package.json'
+      - 'package-lock.json'
 
 #Set the environment variables for tracking metrics
 #env:
@@ -37,48 +23,28 @@ jobs:
   validate:
     name: 'Validate Changed Packages'
     runs-on: ubuntu-latest
-    container: ghcr.io/dxatscale/sfpowerscripts
+    container: ghcr.io/flxbl-io/sfp:latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: 'Authenticate Dev Hub'
         run: |
           echo "${{ secrets.DEVHUB_SFDX_AUTH_URL }}" > ./authfile
-          sfdx auth:sfdxurl:store -f authfile -a devhub
+          sf org login sfdx-url -f authfile -a devhub
 
 
+      # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
+      - name:  'Validate Source'
+        run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug
 
-      # Validate source and trigger test
-      - name: 'Push source to scratch org'
-        run: 'sfdx sfpowerscripts:orchestrator:validate -p ci -v devhub -x'
+# TODO: Implement Salesforce Code Analyzer
+# TODO: Tailor PMD rules to the project
+# TODO: Implement ESLINT for JavaScript/TypeScript files
 
-  static:
-    name: 'static-analysis-of-Apex-classes-using-PMD'
-    runs-on: ubuntu-latest
-    container: ghcr.io/dxatscale/sfpowerscripts
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: "Run PMD static code analysis"
-        shell: bash
-        run: |
-          sfdx sfpowerscripts:analyze:pmd -b --sourcedir=src/core-crm -o core-crm-pmd-output
-
-  validate-package-coverage:
-    name: 'validate metadata coverage for unlocked packages'
-    runs-on: ubuntu-latest
-    container: ghcr.io/dxatscale/sfpowerscripts
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: "validate metadata coverage"
-        shell: bash
-        run: |
-          sfdx sfpowerkit:package:valid -n core-crm -b StandardValueSet
+      # TODO: Implement post-close SO deletion
+      - name: 'Delete Stale Validation Org'
+        if: cancelled()
+        run: sf org delete scratch -p
