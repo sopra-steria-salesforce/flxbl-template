@@ -1,0 +1,30 @@
+# General Ignore
+.idea/
+package.xml
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__/**
+
+**/README.md
+
+# buggy metadata
+**/AppSwitcher*
+
+# ------ Files to ignore on pool creation ----- #
+
+# Add sfp pool files to ignore list
+src-tmp/main/default/staticresources/sourceTrackingFiles/**
+src-tmp/main/default/staticresources/sourceTrackingFiles.resource-meta.xml
+
+# Metadata that needs to be manually (de-)activated
+**/userAccessPolicies/
+
+# ----------- Files not compatible with Scratch orgs --------#
+
+# Ignore as quipDocsRelatedList is incompatible with our scratch org experience sites
+**/quipDocsRelatedList.json
+

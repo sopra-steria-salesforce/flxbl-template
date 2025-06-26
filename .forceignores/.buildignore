@@ -1,0 +1,37 @@
+# General Ignore
+.idea/
+package.xml
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__/**
+
+**/README.md
+
+# buggy metadata
+**/AppSwitcher*
+
+# ------ Files to ignore on package creation ----- #
+
+# Unpackageable metadata
+**/audience/*
+**/networkBranding/*
+
+# Feed & Field tracking functionality
+**feed-tracking.yml
+**history-tracking.yml
+**/postDeploy/**
+
+# Metadata that needs to be manually (de-)activated
+**/userAccessPolicies/
+*.duplicateRule-meta.xml
+*.matchingRule-meta.xml
+
+# List views
+**/All.listView-meta.xml
+
+# We do not want to Manage Admin Profile through DevOps process
+**/Admin.profile-meta.xml

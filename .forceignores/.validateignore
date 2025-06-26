@@ -1,0 +1,26 @@
+# General Ignore
+.idea/
+package.xml
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__/**
+
+**/README.md
+
+# buggy metadata
+**/AppSwitcher*
+
+# ------ Files to ignore on validation ----- #
+
+# Metadata that needs to be manually (de-)activated
+**/userAccessPolicies/
+*.duplicateRule-meta.xml
+*.matchingRule-meta.xml
+
+# ----------- Files not compatible with Scratch orgs --------#
+# Ignore as quipDocsRelatedList is incompatible with our scratch org experience sites
+**/quipDocsRelatedList.json

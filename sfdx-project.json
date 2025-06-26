@@ -32,7 +32,13 @@
 	},
 	"plugins": {
 		"sfp": {
-			"disableTransitiveDependencyResolver": true
+			"disableTransitiveDependencyResolver": true,
+			"ignoreFiles": {
+				"prepare": ".forceignores/.prepareignore",
+				"validate": ".forceignores/.validateignore",
+				"quickbuild": ".forceignores/.buildignore",
+				"build": ".forceignores/.buildignore"
+			}
 		}
 	}
 }
