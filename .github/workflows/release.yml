@@ -6,6 +6,7 @@ on:
       pathToReleaseDef:
         description: "Path to release definition file"
         required: true
+        default: '.github/release-definitions/release-1.0.yml'
 
 #Set the environment variables for tracking metrics
 #env:
