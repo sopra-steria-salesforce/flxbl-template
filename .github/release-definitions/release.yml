@@ -1,27 +1,4 @@
-release: 'Release-1.0'
+release: Release-1.0
 skipIfAlreadyInstalled: true
-promotePackagesBeforeDeploymentToOrg: 'prod'
-artifacts:
-    #-------------- Core Packages------------#
-    #core-components: LATEST_TAG
-    #crm-core: LATEST_TAG
-
-    #-------------- Domain 1 Packages------------#
-    #package-a: LATEST_TAG
-    #package-b: LATEST_TAG
-
-    #-------------- Domain 2 Packages------------#
-    #package-c: LATEST_TAG
-    #package-d: LATEST_TAG
-    #package-e: LATEST_TAG
-
-    #-------------- Data Packages------------#
-    #env-specific-data: LATEST_TAG
-    #prod-data: LATEST_TAG
-    #feature-data: LATEST_TAG
-
-    #-------------- Top Level Packages------------#
-    #src-env-specific: LATEST_TAG
-    #platform-ui: LATEST_TAG
-    #platform-access: LATEST_TAG
-    #src-env-specific-alias-post: LATEST_TAG
+promotePackagesBeforeDeploymentToOrg: prod
+artifacts: {}
