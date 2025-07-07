@@ -1,0 +1,35 @@
+name: '[CREATE] Auto-Generate Release Definition'
+on:
+  create:
+    branches:
+      - 'release/**'
+
+jobs:
+  generate-release-definition:
+    runs-on: ubuntu-latest
+
+    if: github.event.ref_type == 'branch'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install PyYAML
+        run: pip install PyYAML
+
+      - name: Update Release Definition
+        run: python .github/scripts/python/autoGenerateReleaseDefinition.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .github/release-definitions/
+          git commit -m "chore: auto-generate release definition" 
+          git push
