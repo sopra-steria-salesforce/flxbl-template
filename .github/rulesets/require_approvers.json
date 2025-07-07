@@ -3,12 +3,12 @@
 	"name": "Require Approvers",
 	"target": "branch",
 	"source_type": "Repository",
-	"source": "sopra-steria-salesforce/salesforce-dx-template",
+	"source": "sopra-steria-salesforce/flxbl-template",
 	"enforcement": "active",
 	"conditions": {
 		"ref_name": {
 			"exclude": [],
-			"include": ["~DEFAULT_BRANCH", "refs/heads/preprod"]
+			"include": ["~DEFAULT_BRANCH"]
 		}
 	},
 	"rules": [
