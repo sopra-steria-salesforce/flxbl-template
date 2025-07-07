@@ -18,6 +18,7 @@ def autoGenerateReleaseDefinition():
 
     # Update artifacts
     version_pattern = re.compile(r'(.+)_v\d.*')
+    data['artifacts']={}
     for tag in tags:
         match = version_pattern.match(tag)
         if match:
