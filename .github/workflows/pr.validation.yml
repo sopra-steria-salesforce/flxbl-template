@@ -10,6 +10,10 @@ on:
       - 'package.json'
       - 'package-lock.json'
 
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 #Set the environment variables for tracking metrics
 #env:
   #SFPOWERSCRIPTS_NEWRELIC: 'true'
