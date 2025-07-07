@@ -3,12 +3,12 @@
 	"name": "Default Protection",
 	"target": "branch",
 	"source_type": "Repository",
-	"source": "sopra-steria-salesforce/salesforce-dx-template",
+	"source": "sopra-steria-salesforce/flxbl-template",
 	"enforcement": "active",
 	"conditions": {
 		"ref_name": {
 			"exclude": [],
-			"include": ["~DEFAULT_BRANCH", "refs/heads/preprod"]
+			"include": ["~DEFAULT_BRANCH"]
 		}
 	},
 	"rules": [
@@ -37,19 +37,7 @@
 				"strict_required_status_checks_policy": false,
 				"required_status_checks": [
 					{
-						"context": "Install Dependencies",
-						"integration_id": 15368
-					},
-					{
-						"context": "Compile Metadata",
-						"integration_id": 15368
-					},
-					{
-						"context": "Run Apex Tests",
-						"integration_id": 15368
-					},
-					{
-						"context": "Validate 85% Code Coverage",
+						"context": "Validate Source",
 						"integration_id": 15368
 					}
 				]
