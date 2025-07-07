@@ -1,3 +1,4 @@
+# TODO: Decouple package versions from sfdx-project.json
 name: '[MANUAL] PROD Release'
 
 on:

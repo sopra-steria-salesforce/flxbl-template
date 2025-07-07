@@ -1,4 +1,5 @@
-name: 'Build Pipeline - Auto Triggered'
+#TODO: Slack Integration
+name: '[Push] Create Package'
 on:
   push:
     branches:
