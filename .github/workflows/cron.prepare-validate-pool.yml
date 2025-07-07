@@ -1,5 +1,5 @@
 # TODO: Implement Snapshot pool
-name: 'Replenish CI Pool - Auto Triggered'
+name: '[CRON] Replenish Validate Pool'
 
 on:
   workflow_dispatch:
