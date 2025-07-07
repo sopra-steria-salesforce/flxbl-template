@@ -2,13 +2,13 @@ name: '[CREATE] Auto-Generate Release Definition'
 on:
   create:
     branches:
-      - 'release/**'
+      - release/**
 
 jobs:
   generate-release-definition:
     runs-on: ubuntu-latest
 
-    if: github.event.ref_type == 'branch'
+    if: github.event.ref_type == 'branch' && startsWith(github.event.ref, 'refs/heads/release/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
