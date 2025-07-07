@@ -27,7 +27,7 @@ This documentation is for when you want to setup the Flxbl DevOps framework for 
 | Name                                                                     | Description                                                                         | Required? |
 |--------------------------------------------------------------------------|-------------------------------------------------------------------------------------|----------|
 | `SF_PACKAGE_KEY`                                                         | Can be whatever you want.<br>But it's a password every developer needs to remember. | ✅        |
-| `DEVHUB_SFDX_AUTH_URL`<br>`PREPROD_SFDX_AUTH_URL`<br>`SIT_SFDX_AUTH_URL` | See [Create SF CLI Integration User](##Create SF CLI Integration User)                     | ✅        |
+| `PROD_SFDX_AUTH_URL`<br>`PREPROD_SFDX_AUTH_URL`<br>`SIT_SFDX_AUTH_URL` | See [Create SF CLI Integration User](##Create SF CLI Integration User)                     | ✅        |
 
 ## Create SF CLI Integration User
 
@@ -55,7 +55,7 @@ You will need one dedicated user in every Salesforce instance to deploy on behal
     - Authorize to PROD using sf auth web login -a [Company Name] -r https://login.salesforce.com
         - Using the credentials of the integration user you just created
     - Run sf org display -o [Company Name] --verbose
-    - Copy the `SFDX Auth URL` and store it as the secret `DEVHUB_SFDX_AUTH_URL`
+    - Copy the `SFDX Auth URL` and store it as the secret `PROD_SFDX_AUTH_URL`
     - **NB!** Remember to log out of the integration user after this step, using `sf auth logout -o [Company Name]`
 1. Do everything again, but for `preprod` and `sit`
     - **NB!** Use -r https://test.salesforce.com

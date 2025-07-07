@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: 'Authenticate DevHub'
         run: |
-          echo $(DEVHUB_SFDX_AUTH_URL) > ./authfile
+          echo $(PROD_SFDX_AUTH_URL) > ./authfile
           sf org login sfdx-url -f authfile -a devhub
 
       - name: "Delete a used scratch org with username: ${{ github.event.inputs.username }}"
