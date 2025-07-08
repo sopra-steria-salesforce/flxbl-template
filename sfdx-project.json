@@ -54,7 +54,7 @@
 		},
 		{
 			"path": "global/src-env-specific",
-			"package": "platform-ui",
+			"package": "src-env-specific",
 			"versionNumber": "0.1.0.0",
 			"aliasfy": true,
 			"type": "source",
@@ -88,7 +88,7 @@
 		},
 		{
 			"path": "global/src-env-specific-alias-post",
-			"package": "platform-ui",
+			"package": "src-env-specific-alias-post",
 			"versionNumber": "0.1.0.0",
 			"aliasfy": true,
 			"type": "source",
