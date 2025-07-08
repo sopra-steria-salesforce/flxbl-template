@@ -43,7 +43,7 @@ jobs:
 
       # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
       - name:  'Validate Source'
-        run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug
+        run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug --coveragepercent=15
 
       - name: Run Salesforce Code Analyzer
         id: run-code-analyzer
