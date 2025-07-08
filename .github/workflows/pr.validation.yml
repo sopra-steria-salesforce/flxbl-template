@@ -49,7 +49,7 @@ jobs:
         id: run-code-analyzer
         uses: forcedotcom/run-code-analyzer@v2
         with:
-          run-arguments: --workspace . --config-file .github/config/code-analyzer.yml --view detail --output-file sfca_results.html --output-file sfca_results.json
+          run-arguments: --workspace . --config-file .github/config/code-analyzer.yml --view detail
           results-artifact-name: salesforce-code-analyzer-results
           github-token: ${{ github.token }}
 
