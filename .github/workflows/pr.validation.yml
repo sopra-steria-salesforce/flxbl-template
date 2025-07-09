@@ -40,16 +40,15 @@ jobs:
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
 
-
-      # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
-      - name:  'Validate Source'
-        run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug
+      # TODO: Include Salesforce Code Analyzer into custom Flxbl Docker Image
+      - name: Install Latest Salesforce Code Analyzer CLI Plugin
+        run: sf plugins install code-analyzer@latest
 
       - name: Run Salesforce Code Analyzer
         id: run-code-analyzer
         uses: forcedotcom/run-code-analyzer@v2
         with:
-          run-arguments: --workspace . --config-file .github/config/code-analyzer.yml --view detail --output-file sfca_results.html --output-file sfca_results.json
+          run-arguments: --workspace . --config-file .github/config/code-analyzer.yml --view detail --rule-selector recommended:1,recommended:2,recommended:3,recommended:4 --output-file sfca_results.html --output-file sfca_results.json
           results-artifact-name: salesforce-code-analyzer-results
           github-token: ${{ github.token }}
 
@@ -60,6 +59,12 @@ jobs:
           steps.run-code-analyzer.outputs.num-sev2-violations > 0 ||
           steps.run-code-analyzer.outputs.num-sev3-violations > 0
         run: exit 1
+
+      # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
+      - name:  'Validate Source'
+        run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug --coveragepercent=15
+
+
 
       # TODO: Implement post-close SO deletion
       - name: 'Delete Stale Validation Org'

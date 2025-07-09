@@ -109,7 +109,7 @@ engines:
   retire-js:
 
     # Whether to turn off the 'retire-js' engine so that it is not included when running Code Analyzer commands.
-    disable_engine: false
+    disable_engine: true
 
   # ======================================================================
   # REGEX ENGINE CONFIGURATION
