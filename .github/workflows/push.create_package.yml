@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/flxbl-io/sfp:latest
     needs: bump_versions
-    if: github.ref == 'refs/heads/main' 
+    if: github.ref == 'refs/heads/main' && (needs.bump_versions.result == 'success' || needs.bump_versions.result == 'skipped')
     steps:
       - uses: actions/checkout@v4
         with:
