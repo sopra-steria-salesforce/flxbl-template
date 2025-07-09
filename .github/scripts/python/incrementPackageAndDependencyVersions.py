@@ -52,11 +52,12 @@ def incrementDependenciesForChangedPackages():
     f.close()
 
     if (incrementsPerformed or changedPackages):
-     # Add updated sfdx-project.json & packages-to-increment yml
+        os.system('git config user.email "github-actions@github.com"')
+        os.system('git config user.name "github-actions"')
         os.system('git add sfdx-project.json')
 
         # Commit the change
-        os.system('git commit -m "Autoincrement versions for changed packages and dependencies"')
+        os.system('git commit -m "(CI) Autoincrement versions for changed packages and dependencies"')
 
 
 if __name__ == '__main__':
