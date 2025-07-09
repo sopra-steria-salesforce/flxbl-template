@@ -7,7 +7,11 @@ on:
     paths:
       - 'src'
   workflow_dispatch:
-
+    inputs:
+      skip_version_bump:
+        description: 'Skip version bump'
+        required: false
+        default: 'false'
 
 
 #Set the environment variables for tracking metrics
@@ -18,7 +22,34 @@ on:
   #SFPOWERSCRIPTS_DATADOG_HOST: '${{ secrets.DATADOG_HOST }}'
   #SFPOWERSCRIPTS_DATADOG_API_KEY: '${{ secrets.DATADOG_API_KEY }}'
 
+
+
+
 jobs:
+
+  bump_versions:
+    if: github.event.inputs.skip_version_bump != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Bump Package Versions & Dependencies
+        run: python .github/scripts/python/incrementPackageAndDependencyVersions.py
+
+      - name: Cancel current workflow and trigger new run
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run push.create_package.yml --ref main -f skip_version_bump=true
+          gh run cancel ${{ github.run_id }}
+
   quickbuild:
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
