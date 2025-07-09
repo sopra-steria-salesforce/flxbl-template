@@ -21,7 +21,7 @@ log_folder: null # Last calculated by the config command as: "/var/folders/2_/00
 #   4 or 'Debug' - Includes debug, informative, warning, and error messages in the log.
 #   5 or 'Fine' - Includes fine detail, debug, informative, warning, and error messages in the log.
 # If unspecified, or if specified as null, then the 'Debug' log level will be used.
-log_level: 2
+log_level: 4
 
 # Rule override settings of the format rules.{engine_name}.{rule_name}.{property_name} = {override_value} where:
 #   {engine_name} is the name of the engine containing the rule that you want to override.
