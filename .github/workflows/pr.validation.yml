@@ -40,6 +40,10 @@ jobs:
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
 
+      # TODO: Include Salesforce Code Analyzer into custom Flxbl Docker Image
+      - name: Install Latest Salesforce Code Analyzer CLI Plugin
+        run: sf plugins install code-analyzer@latest
+
       - name: Run Salesforce Code Analyzer
         id: run-code-analyzer
         uses: forcedotcom/run-code-analyzer@v2
