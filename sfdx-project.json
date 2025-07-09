@@ -2,6 +2,7 @@
 	"packageDirectories": [
 		{
 			"path": "src-temp",
+			"package": "src-temp",
 			"type": "source",
 			"default": true,
 			"ignoreOnStage": [
@@ -10,7 +11,8 @@
 				"build",
 				"validate",
 				"deploy"
-			]
+			],
+			"versionNumber": "0.0.0.1"
 		},
 		{
 			"path": "src/frameworks/feature-flag",
@@ -32,7 +34,7 @@
 			"dependencies": [
 				{
 					"package": "platform-base",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		},
@@ -44,11 +46,11 @@
 			"dependencies": [
 				{
 					"package": "platform-base",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				},
 				{
 					"package": "package",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		},
@@ -61,11 +63,11 @@
 			"dependencies": [
 				{
 					"package": "platform-base",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				},
 				{
 					"package": "package",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		},
@@ -78,11 +80,11 @@
 			"dependencies": [
 				{
 					"package": "platform-base",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				},
 				{
 					"package": "package",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		},
@@ -95,11 +97,11 @@
 			"dependencies": [
 				{
 					"package": "platform-base",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				},
 				{
 					"package": "package",
-					"versionNumber": "0.1.0.NEXT"
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		}
