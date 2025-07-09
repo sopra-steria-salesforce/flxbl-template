@@ -41,4 +41,4 @@ jobs:
           sf org login sfdx-url -f authfile -a devhub
 
       - name: 'Publish metrics'
-        run: sfdx sfpowerscripts:pool:metrics:publish -v devhub
+        run: sfp pool metrics publish -v devhub
