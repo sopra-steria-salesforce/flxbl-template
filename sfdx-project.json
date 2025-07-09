@@ -21,7 +21,7 @@
 		{
 			"path": "src/core/platform-base",
 			"package": "platform-base",
-			"versionNumber": "0.1.0.NEXT",
+			"versionNumber": "0.2.0.NEXT",
 			"scopeProfiles": true
 		},
 		{
