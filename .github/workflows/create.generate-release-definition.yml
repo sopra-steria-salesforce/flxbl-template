@@ -7,8 +7,6 @@ on:
 jobs:
   generate-release-definition:
     runs-on: ubuntu-latest
-
-    if: github.event.ref_type == 'branch' && startsWith(github.event.ref, 'refs/heads/release/')
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
