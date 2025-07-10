@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   validate:
-    name: 'Validate Changed Packages'
+    name: Validate Changed Packages
     runs-on: ubuntu-latest
     container: ghcr.io/flxbl-io/sfp:latest
 
@@ -35,7 +35,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 'Authenticate Dev Hub'
+      - name: Authenticate Dev Hub
         run: |
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
@@ -60,13 +60,21 @@ jobs:
           steps.run-code-analyzer.outputs.num-sev3-violations > 0
         run: exit 1
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Disable Apex Tests for Unchanged Packages
+        run: python .github/scripts/python/disableApexTestsForUnchangedPackages.py
+
       # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
-      - name:  'Validate Source'
+      - name:  Validate Source
         run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug --coveragepercent=15
 
 
 
       # TODO: Implement post-close SO deletion
-      - name: 'Delete Stale Validation Org'
+      - name: Delete Stale Validation Org
         if: cancelled()
         run: sf org delete scratch -p
