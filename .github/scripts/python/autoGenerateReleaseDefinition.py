@@ -16,8 +16,7 @@ def autoGenerateReleaseDefinition():
                           capture_output=True, text=True)
     tags = result.stdout.strip().split('\n')
 
-    # Update artifacts
-    version_pattern = re.compile(r'(.+)_v\d.*')
+    version_pattern = re.compile(r'(.+)_v\d.*') # Regex to get package name from tag
     data['artifacts']={}
     for tag in tags:
         match = version_pattern.match(tag)
