@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'src'
-      - 'global'
+      - 'src/**'
+      - 'global/**'
   workflow_dispatch:
     inputs:
       skip_version_bump:
