@@ -29,12 +29,12 @@
 		{
 			"path": "src/domain/package",
 			"package": "package",
-			"versionNumber": "0.1.0.NEXT",
+			"versionNumber": "0.2.0.NEXT",
 			"scopeProfiles": true,
 			"dependencies": [
 				{
 					"package": "platform-base",
-					"versionNumber": "0.1.0.LATEST"
+					"versionNumber": "0.2.0.LATEST"
 				}
 			]
 		},
