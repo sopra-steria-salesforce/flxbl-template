@@ -17,20 +17,17 @@
 		{
 			"path": "src/frameworks/feature-flag",
 			"package": "feature-flag",
-			"versionNumber": "0.1.0.NEXT",
-			"scopeProfiles": true
+			"versionNumber": "0.1.0.NEXT"
 		},
 		{
 			"path": "src/core/platform-base",
 			"package": "platform-base",
-			"versionNumber": "0.2.0.NEXT",
-			"scopeProfiles": true
+			"versionNumber": "0.2.0.NEXT"
 		},
 		{
 			"path": "src/domain/package",
 			"package": "package",
-			"versionNumber": "0.3.0.NEXT",
-			"scopeProfiles": true,
+			"versionNumber": "0.3.0.NEXT"
 			"dependencies": [
 				{
 					"package": "platform-base",
