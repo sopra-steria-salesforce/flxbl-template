@@ -28,9 +28,17 @@ jobs:
   validate:
     name: Validate Changed Packages
     runs-on: ubuntu-latest
-    container: ghcr.io/sopra-steria-salesforce/flxbl-template:39.2.2
-
+    container:
+      image: ghcr.io/sopra-steria-salesforce/flxbl-template:39.2.2
     steps:
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_PAT }}
+
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
