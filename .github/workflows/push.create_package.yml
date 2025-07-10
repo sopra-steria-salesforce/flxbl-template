@@ -42,7 +42,7 @@ jobs:
         run: python .github/scripts/python/incrementPackageAndDependencyVersions.py
 
       - name: Push Changes to Main
-        if: skip_version_bump=='false' || github.event_name == 'push'
+        if: github.event.inputs.skip_version_bump=='false' || github.event_name == 'push'
         run: git push origin HEAD
 
   quickbuild:
