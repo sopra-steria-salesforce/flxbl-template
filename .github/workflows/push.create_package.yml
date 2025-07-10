@@ -152,6 +152,14 @@ jobs:
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a prod
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Scope Profiles
+        run: python .github/scripts/python/scopeProfiles.py
+
       - name: 'Create packages'
         run: |
           sfp build -v prod --branch main --diffcheck --buildnumber ${GITHUB_RUN_ID} -f config/project-scratch-def.json --executorcount=8

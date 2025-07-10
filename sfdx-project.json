@@ -17,20 +17,17 @@
 		{
 			"path": "src/frameworks/feature-flag",
 			"package": "feature-flag",
-			"versionNumber": "0.1.0.NEXT",
-			"scopeProfiles": true
+			"versionNumber": "0.1.0.NEXT"
 		},
 		{
 			"path": "src/core/platform-base",
 			"package": "platform-base",
-			"versionNumber": "0.2.0.NEXT",
-			"scopeProfiles": true
+			"versionNumber": "0.2.0.NEXT"
 		},
 		{
 			"path": "src/domain/package",
 			"package": "package",
 			"versionNumber": "0.3.0.NEXT",
-			"scopeProfiles": true,
 			"dependencies": [
 				{
 					"package": "platform-base",
@@ -42,7 +39,6 @@
 			"path": "global/platform-ui",
 			"package": "platform-ui",
 			"versionNumber": "0.1.0.0",
-			"type": "source",
 			"dependencies": [
 				{
 					"package": "platform-base",
@@ -59,7 +55,6 @@
 			"package": "src-env-specific",
 			"versionNumber": "0.1.0.0",
 			"aliasfy": true,
-			"type": "source",
 			"dependencies": [
 				{
 					"package": "platform-base",
@@ -75,7 +70,6 @@
 			"path": "global/platform-access",
 			"package": "platform-access",
 			"versionNumber": "0.1.0.0",
-			"type": "source",
 			"reconcileProfiles": false,
 			"dependencies": [
 				{
@@ -93,7 +87,6 @@
 			"package": "src-env-specific-alias-post",
 			"versionNumber": "0.1.0.0",
 			"aliasfy": true,
-			"type": "source",
 			"dependencies": [
 				{
 					"package": "platform-base",
