@@ -10,9 +10,9 @@ on:
   workflow_dispatch:
     inputs:
       skip_version_bump:
-        description: 'Skip version bump'
-        required: false
-        default: 'false'
+        description: 'Set to false to bump package versions before building the new packages'
+        required: true
+        default: 'true'
 
 
 #Set the environment variables for tracking metrics
@@ -23,13 +23,10 @@ on:
   #SFPOWERSCRIPTS_DATADOG_HOST: '${{ secrets.DATADOG_HOST }}'
   #SFPOWERSCRIPTS_DATADOG_API_KEY: '${{ secrets.DATADOG_API_KEY }}'
 
-
-
-
 jobs:
 
   bump_versions:
-    if: github.event.inputs.skip_version_bump != 'true'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -44,22 +41,16 @@ jobs:
       - name: Bump Package Versions & Dependencies
         run: python .github/scripts/python/incrementPackageAndDependencyVersions.py
 
-      - name: Cancel current workflow and trigger new run
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run push.create_package.yml --ref main -f skip_version_bump=true
-          gh run cancel ${{ github.run_id }}
+      - name: Push Changes to Main
+        if: skip_version_bump=='false' || github.event_name == 'push'
+        run: git push origin HEAD
 
   quickbuild:
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
     container: ghcr.io/flxbl-io/sfp:latest
     needs: bump_versions
-    if: |
-      always() &&
-      (needs.bump_versions.result == 'success' || needs.bump_versions.result == 'skipped') &&
-      github.ref == 'refs/heads/main' 
+    if: needs.bump_versions.result == 'success' && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
         with:
