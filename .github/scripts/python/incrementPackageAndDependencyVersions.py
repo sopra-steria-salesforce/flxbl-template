@@ -54,10 +54,10 @@ def incrementDependenciesForChangedPackages():
     if (incrementsPerformed or changedPackages):
         os.system('git config user.email "github-actions@github.com"')
         os.system('git config user.name "github-actions"')
-        os.system('git add sfdx-project.json')
 
-        # Commit the change
+        os.system('git add sfdx-project.json')
         os.system('git commit -m "(CI) Autoincrement versions for changed packages and dependencies"')
+        os.system('git push origin HEAD')
 
 
 if __name__ == '__main__':
