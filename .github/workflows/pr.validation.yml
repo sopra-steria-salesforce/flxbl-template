@@ -28,7 +28,7 @@ jobs:
   validate:
     name: Validate Changed Packages
     runs-on: ubuntu-latest
-    container: ghcr.io/flxbl-io/sfp:latest
+    container: ghcr.io/sopra-steria-salesforce/flxbl-template:39.2.2
 
     steps:
       - uses: actions/checkout@v4
