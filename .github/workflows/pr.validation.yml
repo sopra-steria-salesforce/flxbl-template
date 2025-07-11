@@ -29,7 +29,7 @@ jobs:
     name: Validate Changed Packages
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/sopra-steria-salesforce/flxbl-template:39.2.3
+      image: ghcr.io/sopra-steria-salesforce/flxbl-template:39.2.4
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.DOCKER_PAT }}
@@ -71,7 +71,7 @@ jobs:
 
       # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
       - name:  Validate Source
-        run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug --coveragepercent=15
+        run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug
 
 
 
