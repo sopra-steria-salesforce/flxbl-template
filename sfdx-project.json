@@ -20,11 +20,6 @@
 			"versionNumber": "0.1.0.NEXT"
 		},
 		{
-			"path": "src/frameworks/nebula-logger-core",
-			"package": "nebula-logger",
-			"versionNumber": "0.1.0.NEXT"
-		},
-		{
 			"path": "src/frameworks/trigger-actions-framework",
 			"package": "trigger-actions-framework",
 			"versionNumber": "0.1.0.NEXT"
