@@ -29,7 +29,7 @@ jobs:
     name: Validate Changed Packages
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/sopra-steria-salesforce/flxbl-template:39.2.5
+      image: ghcr.io/sopra-steria-salesforce/flxbl-template:39.2.4
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.DOCKER_PAT }}
@@ -42,6 +42,10 @@ jobs:
         run: |
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
+
+      # TODO: Include Salesforce Code Analyzer into custom Flxbl Docker Image
+      - name: Install Latest Salesforce Code Analyzer CLI Plugin
+        run: sf plugins install code-analyzer@latest
 
       - name: Run Salesforce Code Analyzer
         id: run-code-analyzer
@@ -68,6 +72,8 @@ jobs:
       # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
       - name:  Validate Source
         run: SFDX_DISABLE_DNS_CHECK=true sfp validate -x -p validate -v devhub --loglevel debug
+
+
 
       # TODO: Implement post-close SO deletion
       - name: Delete Stale Validation Org
