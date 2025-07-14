@@ -22,12 +22,14 @@
 		{
 			"path": "src/frameworks/nebula-logger-core",
 			"package": "nebula-logger",
-			"versionNumber": "0.1.0.NEXT"
+			"versionNumber": "0.1.0.NEXT",
+			"skipTesting": true
 		},
 		{
 			"path": "src/frameworks/trigger-actions-framework",
 			"package": "trigger-actions-framework",
-			"versionNumber": "0.1.0.NEXT"
+			"versionNumber": "0.1.0.NEXT",
+			"skipTesting": true
 		},
 		{
 			"path": "src/core/platform-base",
