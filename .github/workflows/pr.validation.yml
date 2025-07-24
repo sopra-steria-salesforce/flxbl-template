@@ -38,6 +38,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Disable Apex Tests for Unchanged Packages
+        run: python .github/scripts/python/disableApexTestsForUnchangedPackages.py
+        working-directory: ${{ github.workspace }}
+
+
       - name: Authenticate Dev Hub
         run: |
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
@@ -59,14 +69,6 @@ jobs:
           steps.run-code-analyzer.outputs.num-sev3-violations > 0
         run: exit 1
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Disable Apex Tests for Unchanged Packages
-        run: python .github/scripts/python/disableApexTestsForUnchangedPackages.py
-        working-directory: ${{ github.workspace }}
 
       # TODO: Implement Method to log in to SO for validation and postpone deletion until PR Close
       - name:  Validate Source
