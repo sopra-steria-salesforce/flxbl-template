@@ -43,14 +43,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Debug - List files
-        run: ls -la ${{ github.workspace }}
-        working-directory: ${{ github.workspace }}
-
       - name: Disable Apex Tests for Unchanged Packages
         run: python .github/scripts/python/disableApexTestsForUnchangedPackages.py
-        working-directory: ${{ github.workspace }}
-
 
       - name: Authenticate Dev Hub
         run: |
