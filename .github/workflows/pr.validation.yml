@@ -28,11 +28,7 @@ jobs:
   validate:
     name: Validate Changed Packages
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/sopra-steria-salesforce/flxbl-template:39.3.9
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.DOCKER_PAT }}
+    container: ghcr.io/flxbl-io/sfp:latest
     steps:
       - uses: actions/checkout@v4
         with:
