@@ -24,7 +24,7 @@ jobs:
   pool-ci-pool:
     name: 'Replenish CI Pool'
     runs-on: ubuntu-latest
-    container: ghcr.io/petter-eikeland/sfp:39.8.1
+    container: ghcr.io/petter-eikeland/sfp:39.8.2
     timeout-minutes: 720 #Set to Maximum Time out
     steps:
 
