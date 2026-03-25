@@ -24,7 +24,7 @@ jobs:
   pool-ci-pool:
     name: 'Replenish CI Pool'
     runs-on: ubuntu-latest
-    container: ghcr.io/flxbl-io/sfp:latest
+    container: ghcr.io/petter-eikeland/sfp:39.8.1
     timeout-minutes: 720 #Set to Maximum Time out
     steps:
 
@@ -37,6 +37,7 @@ jobs:
         run: |
           echo "${{ secrets.PROD_SFDX_AUTH_URL }}" > ./authfile
           sf org login sfdx-url -f authfile -a devhub
+          sf version --verbose --json
 
       # Authenticate to npm
       - uses: actions/setup-node@v4
@@ -44,6 +45,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: 'Prepare a pool of scratch orgs'
+      
         run: SFDX_DISABLE_DNS_CHECK=true sfp pool prepare -f config/project-validate-pool-def.json -v devhub
         env:
          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
