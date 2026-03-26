@@ -48,7 +48,7 @@ jobs:
   quickbuild:
     name: 'Quickbuild packages'
     runs-on: ubuntu-latest
-    container: ghcr.io/petter-eikeland/sfp:39.8.4
+    container: ghcr.io/petter-eikeland/sfp-community:39.8.4
     needs: bump_versions
     if: needs.bump_versions.result == 'success' && github.ref == 'refs/heads/main'
     steps:
@@ -73,7 +73,7 @@ jobs:
   deploy-to-sit:
     name: 'Deploy to SIT'
     runs-on: ubuntu-latest
-    container: ghcr.io/petter-eikeland/sfp:39.8.4
+    container: ghcr.io/petter-eikeland/sfp-community:39.8.4
     needs: quickbuild
     if: github.ref == 'refs/heads/main'
     environment:
@@ -106,7 +106,7 @@ jobs:
   deploy-to-preprod:
     name: 'Deploy to PREPROD'
     runs-on: ubuntu-latest
-    container: ghcr.io/petter-eikeland/sfp:39.8.4
+    container: ghcr.io/petter-eikeland/sfp-community:39.8.4
     needs: quickbuild
     if: github.ref == 'refs/heads/main'
     environment:
@@ -138,7 +138,7 @@ jobs:
   buildAndPublish:
     name: 'Build and Publish'
     runs-on: ubuntu-latest
-    container: ghcr.io/petter-eikeland/sfp:39.8.4
+    container: ghcr.io/petter-eikeland/sfp-community:39.8.4
     needs: [deploy-to-sit, deploy-to-preprod]
     concurrency: build 
     if: github.ref == 'refs/heads/main' || 'refs/heads/release/*'
