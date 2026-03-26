@@ -17,7 +17,7 @@
 		{
 			"path": "src/frameworks/feature-flag",
 			"package": "feature-flag",
-			"versionNumber": "0.1.0.NEXT"
+			"versionNumber": "0.2.0.NEXT"
 		},
 		{
 			"path": "src/core/platform-base",
